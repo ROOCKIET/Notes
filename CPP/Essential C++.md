@@ -70,7 +70,7 @@ dot成员选择操作符
 
 arrow成员选择操作符
 
-### 1.7文件的读写
+1.7文件的读写
 
 writing and reading files
 
@@ -177,4 +177,136 @@ typename T 占位符
 ### 2.8函数指针带来更大的弹性
 
 pointers to function add flexibility
+
+函数指针必须指明函数返回类型和参数列表
+
+enum枚举类型，默认第一个枚举值为0，之后+1
+
+### 2.9设定头文件
+
+setting up a header file
+
+头文件：为函数只用维护一个声明
+
+声明可以有多份，定义只能一份
+
+const object 的定义只要一出文件之外便不可见（内链接）
+
+头文件“”，一般用户自定义头文件用，从项目目录下开始寻找。
+
+《》，从环境变量/编译器设置路径开始寻找
+
+
+
+## 3.泛型编程风格
+
+generic programming
+
+STL=容器+泛型算法
+
+vector，list顺序性容器
+
+map，set，关联性容器，快速查找容器中的值
+
+泛型算法：
+
+与操作对象类型无关，通过函数模板实现
+
+与容器无关，通过迭代器实现
+
+### 3.1指针的算术运算
+
+the arithmetic of pointers 
+
+当数组被传给函数，或是由函数中返回，仅有第一个元素的地址被传递。
+
+下标操作就是将起始地址加索引值偏移，再解引用
+
+指针算术运算中，会将所指对象类型大小考虑进去
+
+在底层指针上提供一层抽象，取代程序原本的“指针直接操作”，把底层指针的处理统统放在此抽象层中，让用户无须直接面对指针--》迭代器
+
+### 3.2了解iterator
+
+making sence of iterators
+
+begin（）返回一个迭代器指向第一个元素
+
+end（）返回迭代器指向最后一个元素的后边
+
+需要实现的操作：赋值/比较/递增/解引用
+
+const_iterator,只读的迭代器
+
+典型泛型算法：
+
+搜索：find，count，adjacent_find,find_if,count_if,binary_search,find_first_of
+
+排序：merge，partical_sort,partition,random_shuffle,reverse,rotate,sort
+
+复制/删除/替换：copy,remove,remove_if,replace,replace_if,swap,unique
+
+关系：equal，includes，mismatch
+
+生成/转换：fill，for_each,generate,transform
+
+数值：accumulate，adjacent_difference，partial_sum,inner_product
+
+集合：set_union,set_difference
+
+### 3.3所有容器的共通操作
+
+operations common to all containers
+
+==
+
+=
+
+empty（）
+
+size（）
+
+clear（）
+
+begin（）
+
+end（）
+
+insert（）
+
+erase（）
+
+### 3.4使用顺序性容器
+
+using the sequential containers
+
+用来维护排列有序，类型相同的数据
+
+vector 连续内存，随机存取，索引效率高
+
+list 任意位置插删效率高
+
+deque 头部插删性能也高于vector
+
+push/pop _back/front ()
+
+### 3.5使用泛型算法
+
+using the generic algorithm
+
+#include 《algorithm》
+
+find（），在无序结构中查找是否存在某值
+
+binary_search（），有序结构中查找某值
+
+count（），数值相符的元素数目
+
+search（），是否存在某子序列
+
+max_element(),返回最大值的迭代器
+
+### 3.6如何设计一个泛型算法
+
+how to design a generic algorithm
 
