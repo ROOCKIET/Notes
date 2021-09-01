@@ -310,3 +310,125 @@ max_element(),返回最大值的迭代器
 
 how to design a generic algorithm
 
+函数对象 function object，某种class的实例对象，对（）函数调用操作符进行了重载，所以可以像用函数一样用对象。
+
+标准库预定义的函数对象：#include<functional>
+
+六个算术：plus，minus，negate，multiplies，divides，modules
+
+六个关系：less，less_equal,greater,greater_equal,equal_to,not_equal_to
+
+三个逻辑：logical_and,logial_or,logical_not
+
+函数对象适配器，function object adaptor
+
+绑定适配器bind1st，bind2nd，可以将指定值绑定到第1/2操作数
+
+去除容器影响：传入迭代器范围
+
+函数对象比函数指针效率高
+
+### 3.7使用Map
+
+using a map
+
+key-value
+
+a【key】，如果key不在map内，会将key置于map，并value初始化0
+
+所以map的查询最好使用find/count （直接用【】，会改变map）
+
+### 3.8使用Set
+
+using a set
+
+只存key
+
+set默认按照所属类型的less-than关系排列
+
+### 3.9如何使用iterator inserter
+
+how to use iterator inserters
+
+不想使用容器的=，怎么使用inserter 迭代器？三种
+
+back_inserter(container);以pushback代替=
+
+inserter（container,start）;以insert替代=
+
+front_inserter(container);以pushfront替代=，适用于list，deque
+
+#include 《iterator》
+
+### 3.10使用iostream iterator
+
+using the iostream iterator
+
+#include<iterator>
+
+istream_iterator<string> is(cin); //将迭代器绑定到标准输入设备，也就是first 迭代器
+
+istream_iterator<string> eof;//不指定参数则代表end of line
+
+copy（is，eof，back_inserter(text)）;//输入完成
+
+oftream_iterator<string> os(cout," " );//第二个参数是每个元素的间隔
+
+copy(text.begin(),text.end(),os);//输出完成
+
+文件操作将cin/cout换成fstream对象即可
+
+
+
+## 4.基于对象的编程风格
+
+接口与实现
+
+### 4.1如何实现一个class
+
+how to implement a class
+
+class的前置声明，
+
+class stack；//有了前置声明才能进行* /& 的操作
+
+实现：
+
+class stack{
+
+public：//接口
+
+private：
+
+}；
+
+在classs定义里定义的函数，会被视为inline函数
+
+：： 类作用域解析运算符
+
+class定义和inline定义一般放在头文件中
+
+### 4.2什么是构造/析构函数
+
+what are class constructors and class deconstructor？
+
+构造函数，类的初始化函数，与类同名，可以被重载
+
+成员初始化列表，member initialization list，主要用于将参数传递给构造函数
+
+析构函数：~类名，参数列表空，不能被重载，进行资源释放
+
+拷贝构造函数/copy assignment 与 深/浅复制
+
+### 4.3何谓mutable可变与const不变
+
+what are mutable and const？
+
+const成员函数，加在函数参数列表后，暗示此函数内不会修改对象的内容
+
+将成员变量声明为mutable，则在const函数中可以修改此变量，可通过编译
+
+### 4.4什么是this指针
+
+what is the this pointer？
+
