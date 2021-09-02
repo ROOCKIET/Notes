@@ -432,3 +432,95 @@ const成员函数，加在函数参数列表后，暗示此函数内不会修改
 
 what is the this pointer？
 
+this指针是在成员函数内用来指向调用者(一个对象)
+
+底层实现：编译器将this指针加到参数列表中表示调用者
+
+### 4.5静态类成员
+
+static class members
+
+static data member，唯一的可共享的member，只有一份实体
+
+静态成员函数：当函数只操作static数据时，可以将成员函数声明为static，之后函数可以不依托于具体对象，通过类名：：函数名，来使用
+
+### 4.6打造一个iterator class
+
+building an iterator class
+
+运算符函数很像普通函数，区别是不用指定名称，只要在运算符前边加关键字operator即可
+
+bool operator==（const classA&）const；
+
+运算符重载的规则：
+
+不可以引入新的运算符，	.  	 .* 	::  	?:  四个运算符不能重载
+
+运算符操作数个数不能改变
+
+运算符优先级不能改变
+
+运算符函数的参数列表至少有一个class类型。也就是说不能重载nonclass的运算符。
+
+++的前置后置，后置加一个参数，不用使用默认置为0
+
+typedef 将某个类型（内置/复合/class）设定为另一个不同名称
+
+### 4.7合作关系必须建立在友谊的基础上
+
+collaboration sometimes requires friendship
+
+将其他class/函数指定为friend，则friend就有了成员函数的权限
+
+友元的声明不受public/private的影响
+
+友谊的建立，通常是为了效率考虑，即使用public接口的函数可代替。
+
+### 4.8实现一个copy assignment operator
+
+implementing a copy assignment operator
+
+深复制/浅赋值
+
+### 4.9实现一个function object
+
+implement a function object
+
+function object：提供有（）运算符的class
+
+通常把function object 当作参数传递给泛型算法
+
+### 4.10重载iostream运算符
+
+providing class instances of the iostream operators
+
+ostream& operator<<(ostream &os, const classA &a ){
+
+...
+
+return os;}//连续 《《
+
+input运算符的实现比较复杂，因为要考虑读入的数据有问题。
+
+### 4.11指针，指向class member function
+
+pointers to class member function
+
+与普通的函数指针相似，不过还要声明所指的是哪一个class
+
+void （class：：*pm）（int）=0；
+
+//返回类型，参数列表，初始值
+
+可以用typedef简化使用
+
+使用时，对想指定的函数取址赋值给pm
+
+maximal munch 编译规则：每个符号序列总是以‘合法序号序列’最长的那个解释
+
+a+++p 会被解释为 a++ +p
+
+成员函数指针与普通函数指针的区别，前者要通过同一类的对象加以调用，此对象就是成员函数中this所指之物。
+
+## 5.面向对象编程风格
+
