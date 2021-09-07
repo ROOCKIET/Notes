@@ -656,15 +656,55 @@ static/dynamic _cast<>
 
 ## 6.以template进行编程
 
+根据用户指定的值或类型，自动生成函数或类
 
+### 6.1被参数化的类型
 
+parameterized types
 
+template <typename T> //T占位符
 
+class btnode{};
 
+### 6.2class template的定义
 
+the template calss definition
 
+类内定义：与非模板相同
 
+类外定义：
 
+template 《typename T》
+
+classA <T>::classA():data(0){}
+
+### 6.3template类型参数的处理
+
+handling template type parameters
+
+建议将所有的template类型参数视为class类型来处理，也就是将他声明为const &
+
+构造函数中以初始化列表初始化，效率最佳
+
+效率不同？默认构造+copy赋值  vs 直接拷贝构造
+
+### 6.4实现一个class template
+
+implementing the template class
+
+new操作分为两步：申请内存（失败抛出bad—alloc）+初始化
+
+前序中序后序遍历差别是递归作用的操作顺序
+
+### 6.5一个以function template 完成的output运算符
+
+a function template output operator
+
+每个type实现自己的print
+
+### 6.6常量表达式与默认参数值
+
+contanst expressions and default parameters
 
 
 
