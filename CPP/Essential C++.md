@@ -706,23 +706,87 @@ a function template output operator
 
 contanst expressions and default parameters
 
+以表达式作为template参数，非类型参数
+
+全局作用域内的函数及对象，其地址也是一种常量表达式（可以接受函数指针作为参数）
+
+### 6.7以template参数作为一种设计策略
+
+template parameters as strategy
+
+可以用来代替function object，但是需要自己的类型定义指定某些运算符
+
+高级用法，说明template可以传递很多东西，不止class类型
+
+### 6.8member template function
+
+member template function
+
+non template/template类内都可以指定模板成员函数
+
+减少函数定义代码
 
 
 
+## 7.异常处理
 
+异常处理机制，exception handling facility
 
+### 7.1抛出异常
 
+throwing an exception
 
+异常的鉴定与发出，异常的处理方式
 
+c++通过throw表达式产生异常
 
+可以抛出 int/string/自定义异常类
 
+### 7.2捕获异常
 
+catching an exception
 
+catch（type）//捕获
 
+{}//处理
 
+异常处理完后回到正常程序流
 
+处理不了的异常要在处理结构体里重新throw出去
 
+catch（...）{}//...表示 all，捕获所有异常
 
+### 7.3提炼异常
+
+trying for an exception
+
+catch子句和try块相应而生
+
+catch子句放在try块的结尾，如果try块内有异常发生，有catch内的语句来处理
+
+发生异常后，不断往上解函数调用链以找到可以处理的catch，到main都没有找到则调用标准库的terminate（），默认中断程序。
+
+初学者常犯的错误：将c++异常与段错误/bus error等硬件异常混淆。c++异常都可以找到throw语句。
+
+### 7.4局部资源管理
+
+local resource management
+
+资源管理的手法：在构造函数内请求资源，在析构函数里释放资源
+
+在异常处理机制终结某个函数前，c++保证，函数中所有的局部对象的析构函数都会被调用。
+
+### 7.5标准异常
+
+the standard exception
+
+new失败产生bad_alloc
+
+bad_alloc是个class，不是object
+
+what（）可以返回异常的文字描述
+
+c_Str(),str-->char *
 
 
 
